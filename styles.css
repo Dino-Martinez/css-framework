@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+:root {
+  --clr-background-400: hsl(0 0% 100%);
+  --clr-background-300: hsl(0 0% 75%);
+  --clr-background-200: hsl(0 0% 50%);
+  --clr-background-100: hsl(0 0% 25%);
+  --clr-foreground: hsl(0 0% 0%);
+  --clr-primary-400: hsl(200 100% 40%);
+  --clr-primary-300: hsl(200 100% 60%);
+  --border: 1px solid var(--clr-foreground);
+  --button-padding: 0.5rem 1rem;
+  --button-padding-sm: 0.25rem .5rem;
+  --button-margin: 0 revert;
+  --navbar-padding: .5rem 4rem;
+  --navbar-margin: 0;
+  --navbar-tab-width: 100px, 1fr;
+  --material-shadow: 3px 3px 10px var(--clr-background-300);
+}
+
+body,
+html {
+  background: var(--clr-background-400);
+  color: var(--clr-foreground);
+  font-family: "Oxygen", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Components */
+.button {
+  background: var(--clr-background-400);
+  color: var(--clr-foreground);
+  border: var(--border);
+  padding: var(--button-padding);
+  display: inline-flex;
+  margin: var(--button-margin);
+  justify-content: center;
+  align-items: center;
+}
+.button.circle {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.button.pill {
+  border-radius: 20%/50%;
+}
+.button.small {
+  padding: var(--button-padding-sm);
+}
+.button:hover {
+  cursor: pointer;
+  background: var(--clr-background-300);
+}
+
+.card {
+  display: inline-flex;
+  border: var(--border);
+  flex-direction: column;
+  align-items: center;
+  width: min-content;
+}
+.card p, .card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+  margin: 0;
+}
+.card.rounded {
+  border-radius: 7.5px;
+  overflow: hidden;
+}
+.card .title {
+  font-size: 1.5em;
+  margin-block: 0.125em;
+}
+.card .description {
+  font-size: 0.75em;
+  margin: 0.5em;
+}
+
+.link {
+  display: inline;
+  color: var(--clr-primary-400);
+  border-bottom: 0.125em solid var(--clr-primary-400);
+}
+.link:hover {
+  cursor: pointer;
+  color: var(--clr-primary-300);
+  border-color: var(--clr-primary-300);
+}
+
+/* Layouts */
+.navbar {
+  width: 100vw;
+  position: sticky;
+  padding: var(--navbar-padding);
+  margin: var(--navbar-margin);
+  border-bottom: var(--border);
+  display: flex;
+  justify-content: center;
+}
+.navbar .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar.top {
+  top: 0;
+}
+.navbar.bottom {
+  bottom: 0;
+  border-bottom: none;
+  border-top: var(--border);
+}
+.navbar.tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--navbar-tab-width)));
+}
+.navbar.branding {
+  display: flex;
+  justify-content: center;
+}
+.navbar.branding * {
+  padding-inline: 1rem;
+}
+.navbar.branding .brand {
+  margin-right: auto;
+}
+.navbar.branding .menu {
+  margin-left: auto;
+}
+
+.group {
+  display: inline-flex;
+  width: max-content;
+  height: max-content;
+}
+.group .button:not(:first-child), .group .card:not(:first-child) {
+  border-left: none;
+}
+.group.borderless .button, .group.borderless .card {
+  border-top: none;
+  border-bottom: none;
+}
+.group.borderless .button:first-child, .group.borderless .card:first-child {
+  border-left: none;
+}
+.group.borderless .button:last-child, .group.borderless .card:last-child {
+  border-right: none;
+}
+.group.no-separators .button:not(:last-child), .group.no-separators .card:not(:last-child) {
+  border-right: none;
+}
+.group.pill {
+  border-radius: 500px;
+}
+.group.pill .button:first-child, .group.pill .card:first-child {
+  border-top-left-radius: 500px;
+  border-bottom-left-radius: 500px;
+}
+.group.pill .button:last-child, .group.pill .card:last-child {
+  border-top-right-radius: 500px;
+  border-bottom-right-radius: 500px;
+}
+.group.pill * {
+  overflow: hidden;
+}
+.group.rounded {
+  border-radius: 7.5px;
+}
+.group.rounded .button:first-child, .group.rounded .card:first-child {
+  border-top-left-radius: 7.5px;
+  border-bottom-left-radius: 7.5px;
+}
+.group.rounded .button:last-child, .group.rounded .card:last-child {
+  border-top-right-radius: 7.5px;
+  border-bottom-right-radius: 7.5px;
+}
+.group.rounded * {
+  overflow: hidden;
+}
+
+/* Utilities */
+.borderless {
+  border: none;
+}
+
+.raised {
+  box-shadow: var(--material-shadow);
+}
+
+/*# sourceMappingURL=styles.css.map */
