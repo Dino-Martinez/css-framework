@@ -7,6 +7,8 @@
   --clr-foreground: hsl(0 0% 0%);
   --clr-primary-400: hsl(200 100% 40%);
   --clr-primary-300: hsl(200 100% 60%);
+  --clr-success-300: hsl(0 100% 60%);
+  --clr-danger-300: hsl(130 100% 60%);
   --border: 1px solid var(--clr-foreground);
   --button-padding: 0.5rem 1rem;
   --button-padding-sm: 0.25rem .5rem;
@@ -24,6 +26,7 @@ html {
   font-family: "Oxygen", sans-serif;
   font-size: 16px;
   font-weight: 400;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
 }
@@ -33,7 +36,7 @@ html {
 }
 
 /* Components */
-.button {
+.button, .form input[type=button], .form input[type=submit], .form input[type=color], .form input[type=file]::file-selector-button, .form input[type=reset] {
   background: var(--clr-background-400);
   color: var(--clr-foreground);
   border: var(--border);
@@ -43,17 +46,21 @@ html {
   justify-content: center;
   align-items: center;
 }
-.button.circle {
+.button.circle, .form input.circle[type=button], .form input.circle[type=submit], .form input.circle[type=color], .form input.circle[type=file]::file-selector-button, .form input.circle[type=reset] {
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
-.button.pill {
+.button.pill, .form input.pill[type=button], .form input.pill[type=submit], .form input.pill[type=color], .form input.pill[type=file]::file-selector-button, .form input.pill[type=reset] {
   border-radius: 20%/50%;
 }
-.button.small {
+.button.rounded, .form input.rounded[type=button], .form input.rounded[type=submit], .form input.rounded[type=color], .form input.rounded[type=file]::file-selector-button, .form input.rounded[type=reset] {
+  border-radius: 7.5px;
+  overflow: hidden;
+}
+.button.small, .form input.small[type=button], .form input.small[type=submit], .form input.small[type=color], .form input.small[type=file]::file-selector-button, .form input.small[type=reset] {
   padding: var(--button-padding-sm);
 }
-.button:hover {
+.button:hover, .form input[type=button]:hover, .form input[type=submit]:hover, .form input[type=color]:hover, .form input[type=file]:hover::file-selector-button, .form input[type=reset]:hover {
   cursor: pointer;
   background: var(--clr-background-300);
 }
@@ -85,11 +92,31 @@ html {
   display: inline;
   color: var(--clr-primary-400);
   border-bottom: 0.125em solid var(--clr-primary-400);
+  margin-block: 0;
 }
 .link:hover {
   cursor: pointer;
   color: var(--clr-primary-300);
   border-color: var(--clr-primary-300);
+}
+
+.form input {
+  display: block;
+  margin-bottom: 1rem !important;
+  padding: 0.5rem;
+}
+.form .title {
+  position: relative;
+  width: max-content;
+}
+.form .title::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 0.125em;
+  bottom: -0.25em;
+  left: 0;
+  background: var(--clr-foreground);
 }
 
 /* Layouts */
@@ -135,33 +162,33 @@ html {
 
 .group {
   display: inline-flex;
-  width: max-content;
+  flex-wrap: wrap;
   height: max-content;
 }
-.group .button:not(:first-child), .group .card:not(:first-child) {
+.group .button:not(:first-child), .group .form input[type=button]:not(:first-child), .form .group input[type=button]:not(:first-child), .group .form input[type=submit]:not(:first-child), .form .group input[type=submit]:not(:first-child), .group .form input[type=color]:not(:first-child), .form .group input[type=color]:not(:first-child), .group .form input[type=file]:not(:first-child)::file-selector-button, .form .group input[type=file]:not(:first-child)::file-selector-button, .group .form input[type=reset]:not(:first-child), .form .group input[type=reset]:not(:first-child), .group .card:not(:first-child) {
   border-left: none;
 }
-.group.borderless .button, .group.borderless .card {
+.group.borderless .button, .group.borderless .form input[type=button], .form .group.borderless input[type=button], .group.borderless .form input[type=submit], .form .group.borderless input[type=submit], .group.borderless .form input[type=color], .form .group.borderless input[type=color], .group.borderless .form input[type=file]::file-selector-button, .form .group.borderless input[type=file]::file-selector-button, .group.borderless .form input[type=reset], .form .group.borderless input[type=reset], .group.borderless .card {
   border-top: none;
   border-bottom: none;
 }
-.group.borderless .button:first-child, .group.borderless .card:first-child {
+.group.borderless .button:first-child, .group.borderless .form input[type=button]:first-child, .form .group.borderless input[type=button]:first-child, .group.borderless .form input[type=submit]:first-child, .form .group.borderless input[type=submit]:first-child, .group.borderless .form input[type=color]:first-child, .form .group.borderless input[type=color]:first-child, .group.borderless .form input[type=file]:first-child::file-selector-button, .form .group.borderless input[type=file]:first-child::file-selector-button, .group.borderless .form input[type=reset]:first-child, .form .group.borderless input[type=reset]:first-child, .group.borderless .card:first-child {
   border-left: none;
 }
-.group.borderless .button:last-child, .group.borderless .card:last-child {
+.group.borderless .button:last-child, .group.borderless .form input[type=button]:last-child, .form .group.borderless input[type=button]:last-child, .group.borderless .form input[type=submit]:last-child, .form .group.borderless input[type=submit]:last-child, .group.borderless .form input[type=color]:last-child, .form .group.borderless input[type=color]:last-child, .group.borderless .form input[type=file]:last-child::file-selector-button, .form .group.borderless input[type=file]:last-child::file-selector-button, .group.borderless .form input[type=reset]:last-child, .form .group.borderless input[type=reset]:last-child, .group.borderless .card:last-child {
   border-right: none;
 }
-.group.no-separators .button:not(:last-child), .group.no-separators .card:not(:last-child) {
+.group.no-separators .button:not(:last-child), .group.no-separators .form input[type=button]:not(:last-child), .form .group.no-separators input[type=button]:not(:last-child), .group.no-separators .form input[type=submit]:not(:last-child), .form .group.no-separators input[type=submit]:not(:last-child), .group.no-separators .form input[type=color]:not(:last-child), .form .group.no-separators input[type=color]:not(:last-child), .group.no-separators .form input[type=file]:not(:last-child)::file-selector-button, .form .group.no-separators input[type=file]:not(:last-child)::file-selector-button, .group.no-separators .form input[type=reset]:not(:last-child), .form .group.no-separators input[type=reset]:not(:last-child), .group.no-separators .card:not(:last-child) {
   border-right: none;
 }
 .group.pill {
   border-radius: 500px;
 }
-.group.pill .button:first-child, .group.pill .card:first-child {
+.group.pill .button:first-child, .group.pill .form input[type=button]:first-child, .form .group.pill input[type=button]:first-child, .group.pill .form input[type=submit]:first-child, .form .group.pill input[type=submit]:first-child, .group.pill .form input[type=color]:first-child, .form .group.pill input[type=color]:first-child, .group.pill .form input[type=file]:first-child::file-selector-button, .form .group.pill input[type=file]:first-child::file-selector-button, .group.pill .form input[type=reset]:first-child, .form .group.pill input[type=reset]:first-child, .group.pill .card:first-child {
   border-top-left-radius: 500px;
   border-bottom-left-radius: 500px;
 }
-.group.pill .button:last-child, .group.pill .card:last-child {
+.group.pill .button:last-child, .group.pill .form input[type=button]:last-child, .form .group.pill input[type=button]:last-child, .group.pill .form input[type=submit]:last-child, .form .group.pill input[type=submit]:last-child, .group.pill .form input[type=color]:last-child, .form .group.pill input[type=color]:last-child, .group.pill .form input[type=file]:last-child::file-selector-button, .form .group.pill input[type=file]:last-child::file-selector-button, .group.pill .form input[type=reset]:last-child, .form .group.pill input[type=reset]:last-child, .group.pill .card:last-child {
   border-top-right-radius: 500px;
   border-bottom-right-radius: 500px;
 }
@@ -171,16 +198,28 @@ html {
 .group.rounded {
   border-radius: 7.5px;
 }
-.group.rounded .button:first-child, .group.rounded .card:first-child {
+.group.rounded .button:first-child, .group.rounded .form input[type=button]:first-child, .form .group.rounded input[type=button]:first-child, .group.rounded .form input[type=submit]:first-child, .form .group.rounded input[type=submit]:first-child, .group.rounded .form input[type=color]:first-child, .form .group.rounded input[type=color]:first-child, .group.rounded .form input[type=file]:first-child::file-selector-button, .form .group.rounded input[type=file]:first-child::file-selector-button, .group.rounded .form input[type=reset]:first-child, .form .group.rounded input[type=reset]:first-child, .group.rounded .card:first-child {
   border-top-left-radius: 7.5px;
   border-bottom-left-radius: 7.5px;
 }
-.group.rounded .button:last-child, .group.rounded .card:last-child {
+.group.rounded .button:last-child, .group.rounded .form input[type=button]:last-child, .form .group.rounded input[type=button]:last-child, .group.rounded .form input[type=submit]:last-child, .form .group.rounded input[type=submit]:last-child, .group.rounded .form input[type=color]:last-child, .form .group.rounded input[type=color]:last-child, .group.rounded .form input[type=file]:last-child::file-selector-button, .form .group.rounded input[type=file]:last-child::file-selector-button, .group.rounded .form input[type=reset]:last-child, .form .group.rounded input[type=reset]:last-child, .group.rounded .card:last-child {
   border-top-right-radius: 7.5px;
   border-bottom-right-radius: 7.5px;
 }
 .group.rounded * {
   overflow: hidden;
+}
+
+.layout {
+  margin: 0;
+  padding-inline: 0;
+  display: grid;
+  place-items: center;
+}
+.layout.content, .layout .content {
+  padding-block: 2.5rem;
+  margin-inline: auto;
+  width: clamp(25ch, 75%, 100ch);
 }
 
 /* Utilities */

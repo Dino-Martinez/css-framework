@@ -9,6 +9,7 @@ html {
   font-family: 'Oxygen', sans-serif;
   font-size: 16px;
   font-weight: 400;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
 }
@@ -35,6 +36,11 @@ html {
 
   &.pill {
     border-radius: 20%/50%;
+  }
+  
+  &.rounded {
+    border-radius: $rounded-radius;
+    overflow: hidden;
   }
 
   &.small {
@@ -80,11 +86,38 @@ html {
   display: inline;
   color: $color;
   border-bottom: .125em solid $color;
+  margin-block: 0;
   
   &:hover {
     cursor: pointer;
     color: $hoverColor;
     border-color: $hoverColor;
+  }
+}
+
+.form {
+  
+  input {
+    &[type=button], &[type=submit], &[type=color], &[type=file]::file-selector-button, &[type=reset] {
+      @extend .button;
+    }
+    display: block;
+    margin-bottom: 1rem!important;
+    padding: .5rem;
+  }
+
+  .title {
+    position: relative;
+    width: max-content;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: .125em;
+      bottom: -.25em;
+      left: 0;
+      background: var(--clr-foreground);
+    }
   }
 }
 
@@ -140,7 +173,7 @@ html {
 
 .group {
   display: inline-flex;
-  width: max-content;
+  flex-wrap: wrap;
   height: max-content;
 
   .button:not(:first-child), .card:not(:first-child) {
@@ -198,6 +231,19 @@ html {
     }
 
     * { overflow: hidden; }
+  }
+}
+
+.layout {
+  margin: 0;
+  padding-inline: 0;
+  display: grid;
+  place-items: center;
+
+  &.content, .content {
+    padding-block: 2.5rem;
+    margin-inline: auto;
+    width: clamp(25ch, 75%, 100ch);
   }
 }
 
