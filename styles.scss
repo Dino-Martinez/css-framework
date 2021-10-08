@@ -28,6 +28,7 @@ html {
   margin: var(--button-margin);
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 
   &.circle {
     aspect-ratio: 1/1;
@@ -58,7 +59,11 @@ html {
   border: var(--border);
   flex-direction: column;
   align-items: center;
-  width: min-content;
+  width: 100%;
+
+  &>img {
+    width: 100%;
+  }
 
   p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -175,6 +180,7 @@ html {
   display: inline-flex;
   flex-wrap: wrap;
   height: max-content;
+  padding: 0!important;
 
   .button:not(:first-child), .card:not(:first-child) {
     border-left: none;
@@ -254,4 +260,24 @@ html {
 
 .raised {
   box-shadow: var(--material-shadow);
+}
+
+.primary {
+  color: var(--clr-primary-300);
+}
+.success {
+  color: var(--clr-success-300);
+}
+.danger {
+  color: var(--clr-danger-300);
+}
+
+.bg-primary {
+  background: var(--clr-primary-300);
+}
+.bg-success {
+  background: var(--clr-success-300);
+}
+.bg-danger {
+  background: var(--clr-danger-300);
 }
